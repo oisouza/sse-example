@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Example</title>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <script>
+        const messageList = document.getElementById('messages');
+        function addMessage(message) {
+            const li = document.createElement('li');
+            li.textContent = message;
+            messageList.appendChild(li);
+        }
+        const eventSource = new EventSource('http://localhost:3000/sse_endpoint');
+        eventSource.onmessage = function(event) {
+            addMessage(event.data);
+        };
+    </script>
+</body>
+</html>
